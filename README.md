@@ -6,7 +6,7 @@ Sistema de entrevistas técnicas com IA usando reconhecimento de voz, LLM e sín
 
 - **8 Perfis de Entrevistador**: Junior, Pleno, Senior, DevOps, Frontend, Backend, Fullstack, Data Engineer
 - **Reconhecimento de Voz**: Fast Whisper com suporte CUDA
-- **IA Conversacional**: OpenRouter GPT-4o com sistema de tags customizado
+- **IA Conversacional**: OpenRouter GPT-5.1 com sistema de tags customizado
 - **Síntese de Voz**: ElevenLabs v3 com vozes naturais
 - **Interface Moderna**: Design premium com animações suaves
 - **Avaliação Final**: Análise completa com pontos fortes, fracos e nota
