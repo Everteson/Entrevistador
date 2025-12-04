@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrevistador IA - Sistema de Entrevistas Técnicas</title>
+    <meta name="description"
+        content="Sistema inteligente de entrevistas técnicas com IA, reconhecimento de voz e avaliação automática">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Background Animation -->
+    <div class="background-gradient"></div>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">🎯</div>
+                <h1>Entrevistador <span class="gradient-text">IA</span></h1>
+            </div>
+            <div class="header-status" id="status">
+                <span class="status-dot"></span>
+                <span class="status-text">Pronto</span>
+            </div>
+        </header>
+
+        <!-- Setup Panel -->
+        <div class="setup-panel" id="setupPanel">
+            <div class="glass-card">
+                <h2>Configurar Entrevista</h2>
+                <p class="subtitle">Escolha o perfil e a stack para começar</p>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="profileSelect">
+                            <span class="label-icon">👤</span>
+                            Perfil do Entrevistador
+                        </label>
+                        <select id="profileSelect" class="select-input">
+                            <option value="junior">Junior - Fundamentos básicos</option>
+                            <option value="pleno" selected>Pleno - Arquitetura e padrões</option>
+                            <option value="senior">Senior - Sistemas distribuídos</option>
+                            <option value="devops">DevOps - Infraestrutura e cloud</option>
+                            <option value="frontend">Frontend - UI/UX e frameworks</option>
+                            <option value="backend">Backend - APIs e bancos de dados</option>
+                            <option value="fullstack">Fullstack - Frontend + Backend</option>
+                            <option value="data">Data Engineer - Pipelines e ETL</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stackInput">
+                            <span class="label-icon">💻</span>
+                            Stack / Tecnologia
+                        </label>
+                        <input type="text" id="stackInput" class="text-input"
+                            placeholder="Ex: Python, React, Node.js..." value="backend">
+                    </div>
+                </div>
+
+                <button id="startBtn" class="btn btn-primary">
+                    <span class="btn-icon">🚀</span>
+                    Iniciar Entrevista
+                </button>
+            </div>
+        </div>
+
+        <!-- Interview Panel -->
+        <div class="interview-panel hidden" id="interviewPanel">
+            <!-- Chat Area -->
+            <div class="chat-container glass-card">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="welcome-message">
+                        <div class="welcome-icon">👋</div>
+                        <h3>Bem-vindo ao Entrevistador IA!</h3>
+                        <p>Aguardando início da entrevista...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-area glass-card">
+                <div class="input-tabs">
+                    <button class="tab-btn active" data-tab="voice">
+                        <span class="tab-icon">🎤</span>
+                        Voz
+                    </button>
+                    <button class="tab-btn" data-tab="code">
+                        <span class="tab-icon">💻</span>
+                        Código
+                    </button>
+                </div>
+
+                <!-- Voice Input -->
+                <div class="input-content" id="voiceInput">
+                    <div class="voice-control">
+                        <button id="recordBtn" class="btn btn-record">
+                            <span class="record-icon">🎤</span>
+                            <span class="record-text">Clique para falar</span>
+                        </button>
+                        <div class="voice-visualizer hidden" id="voiceVisualizer">
+                            <div class="wave"></div>
+                            <div class="wave"></div>
+                            <div class="wave"></div>
+                            <div class="wave"></div>
+                            <div class="wave"></div>
+                        </div>
+                    </div>
+                    <p class="input-hint">Clique no botão e fale sua resposta</p>
+                </div>
+
+                <!-- Code Input -->
+                <div class="input-content hidden" id="codeInput">
+                    <textarea id="codeTextarea" class="code-textarea"
+                        placeholder="Digite seu código aqui para evitar erros de transcrição..."></textarea>
+                    <button id="sendCodeBtn" class="btn btn-secondary">
+                        <span class="btn-icon">📤</span>
+                        Enviar Código
+                    </button>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button id="evaluateBtn" class="btn btn-outline">
+                        <span class="btn-icon">📊</span>
+                        Finalizar e Avaliar
+                    </button>
+                    <button id="newInterviewBtn" class="btn btn-outline">
+                        <span class="btn-icon">🔄</span>
+                        Nova Entrevista
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Evaluation Modal -->
+        <div class="modal hidden" id="evaluationModal">
+            <div class="modal-overlay"></div>
+            <div class="modal-content glass-card">
+                <button class="modal-close" id="closeModal">×</button>
+                <h2>📊 Avaliação Final</h2>
+                <div id="evaluationContent" class="evaluation-content">
+                    <div class="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Gerando avaliação...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Player (hidden) -->
+    <audio id="audioPlayer" style="display: none;"></audio>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

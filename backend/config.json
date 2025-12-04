@@ -1,0 +1,30 @@
+{
+  "api_keys": {
+    "openrouter": "YOUR_OPENROUTER_API_KEY",
+    "elevenlabs": "YOUR_ELEVENLABS_API_KEY"
+  },
+  "stt": {
+    "model_size": "base",
+    "device": "cuda",
+    "compute_type": "float16",
+    "language": "pt"
+  },
+  "llm": {
+    "model": "openai/gpt-4o",
+    "temperature": 0.7,
+    "max_tokens": 1000,
+    "context_window": 6
+  },
+  "tts": {
+    "voice_id": "YOUR_VOICE_ID",
+    "model_id": "eleven_multilingual_v2",
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "style": 0.0,
+    "use_speaker_boost": true
+  },
+  "interviewer": {
+    "default_profile": "pleno",
+    "default_stack": "backend"
+  }
+}
