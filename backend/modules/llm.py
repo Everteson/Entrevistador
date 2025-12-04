@@ -63,6 +63,10 @@ class LLMService:
             logger.info(f"Sending request to LLM with {len(full_messages)} messages")
             
             response = self.client.chat.completions.create(
+                extra_headers={
+                    "HTTP-Referer": "http://localhost:8000",
+                    "X-Title": "Entrevistador IA"
+                },
                 model=self.model,
                 messages=full_messages,
                 temperature=self.temperature,
@@ -140,6 +144,10 @@ FORMATO DE RESPOSTA:
             eval_messages = messages + [{"role": "user", "content": evaluation_prompt}]
             
             response = self.client.chat.completions.create(
+                extra_headers={
+                    "HTTP-Referer": "http://localhost:8000",
+                    "X-Title": "Entrevistador IA"
+                },
                 model=self.model,
                 messages=eval_messages,
                 temperature=0.3,  # Lower temperature for more consistent evaluation

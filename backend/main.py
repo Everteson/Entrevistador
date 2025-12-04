@@ -10,6 +10,10 @@ from pathlib import Path
 from typing import Dict, Optional
 from datetime import datetime
 import uuid
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 from fastapi import FastAPI, File, UploadFile, HTTPException, Form
 from fastapi.middleware.cors import CORSMiddleware
@@ -57,9 +61,14 @@ stt_service = STTService(
     compute_type=config["stt"]["compute_type"]
 )
 
+# Get API keys from environment or config
+elevenlabs_key = os.getenv("ELEVENLABS_API_KEY") or config["api_keys"]["elevenlabs"]
+openrouter_key = os.getenv("OPENROUTER_API_KEY") or config["api_keys"]["openrouter"]
+voice_id = os.getenv("ELEVENLABS_VOICE_ID") or config["tts"]["voice_id"]
+
 tts_service = TTSService(
-    api_key=config["api_keys"]["elevenlabs"],
-    voice_id=config["tts"]["voice_id"],
+    api_key=elevenlabs_key,
+    voice_id=voice_id,
     model_id=config["tts"]["model_id"],
     stability=config["tts"]["stability"],
     similarity_boost=config["tts"]["similarity_boost"],
@@ -68,7 +77,7 @@ tts_service = TTSService(
 )
 
 llm_service = LLMService(
-    api_key=config["api_keys"]["openrouter"],
+    api_key=openrouter_key,
     model=config["llm"]["model"],
     temperature=config["llm"]["temperature"],
     max_tokens=config["llm"]["max_tokens"]
