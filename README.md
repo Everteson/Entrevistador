@@ -16,7 +16,7 @@ Sistema de entrevistas técnicas com IA usando reconhecimento de voz, LLM e sín
 - Python 3.10+
 - CUDA (para Fast Whisper)
 - API Keys:
-  - OpenRouter (para GPT-4o)
+  - OpenRouter (para GPT-5.1)
   - ElevenLabs (para TTS)
 
 ## 🔧 Instalação
@@ -104,7 +104,7 @@ backend/
 └── modules/
     ├── stt.py             # Fast Whisper (Speech-to-Text)
     ├── tts.py             # ElevenLabs (Text-to-Speech)
-    ├── llm.py             # OpenRouter GPT-4o
+    ├── llm.py             # OpenRouter GPT-5.1
     ├── profiles.py        # Perfis de entrevistador
     └── context_manager.py # Gerenciamento de contexto
 ```
@@ -138,7 +138,7 @@ frontend/
 
 1. **Usuário fala** → Áudio capturado
 2. **Fast Whisper** → Transcreve para texto
-3. **Backend** → Envia para OpenRouter GPT-4o
+3. **Backend** → Envia para OpenRouter GPT-5.1
 4. **LLM responde** com tags:
    - `<falar>` → Texto para ElevenLabs (voz)
    - `<codigo>` → Conteúdo visual (tela)
@@ -174,7 +174,7 @@ frontend/
 
 ```json
 "llm": {
-  "model": "openai/gpt-4o",
+  "model": "openai/gpt-5.1",
   "temperature": 0.7,
   "max_tokens": 1000,
   "context_window": 6        // Últimas 6 trocas
